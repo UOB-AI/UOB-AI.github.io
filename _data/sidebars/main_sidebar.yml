@@ -1,0 +1,25 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  folders:
+
+  - title: Documentations
+    output: web
+    folderitems:
+
+    - title: Overview
+      output: web
+      url: /index.html
+  
+    - title: Getting an Account
+      output: web
+      url: /access.html
+  
+    - title: Login to Cluster
+      output: web
+      url: /login.html
+  
+    - title: JupyterLab
+      output: web
+      url: /jupyter.html
