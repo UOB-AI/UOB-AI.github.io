@@ -75,7 +75,7 @@ defaults:
       layout: "page"
       comments: false
       # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
+      search: false
       sidebar: main_sidebar
       topnav: topnav
   -
@@ -84,7 +84,7 @@ defaults:
       type: "tooltips"
     values:
       layout: "page"
-      search: true
+      search: false
       tooltip: true
 
   -
@@ -95,7 +95,7 @@ defaults:
       layout: "post"
       comments: false
       # if you don't want to use Commento.io and just hide comments, change true to false wherever you see the comments property
-      search: true
+      search: false
       sidebar: main_sidebar
       topnav: topnav
 
