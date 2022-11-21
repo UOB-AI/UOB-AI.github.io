@@ -23,3 +23,7 @@ entries:
     - title: JupyterLab
       output: web
       url: /jupyter.html
+
+    - title: MPI
+      output: web
+      url: /mpi.html
