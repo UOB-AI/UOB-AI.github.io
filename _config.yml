@@ -5,13 +5,13 @@ repository: uob-ai/uob-ai.github.io
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
-topnav_title: UOB Advanced AI and Computing Center
+topnav_title: Benefit Advanced AI and Computing Lab
 # this appears on the top navigation bar next to the home button
 
-site_title: UOB Advanced AI and Computing Center
+site_title: Benefit Advanced AI and Computing Lab
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
-company_name: Copyright 2022 UOB Advanced AI and Computing Center
+company_name: Copyright 2022 Benefit Advanced AI and Computing Lab
 # this appears in the footer
 
 github_editme_path: UOB-AI/UOB-AI.github.io/tree/master/
@@ -35,7 +35,7 @@ exclude:
   - vendor
 # these are the files and directories that jekyll will exclude from the build
 
-feedback_subject_line: UOB Advanced AI and Computing Center
+feedback_subject_line: Benefit Advanced AI and Computing Lab
 
 feedback_email: uobai@uob.edu.bh
 # used as a contact email for the Feedback link in the top navigation bar

@@ -1,12 +1,9 @@
 ---
-title: "UOB Advanced Artificial Intelligence and Computing Center"
+title: "Benefit Advanced AI and Computing Lab"
 keywords: homepage
 sidebar: main_sidebar
 permalink: index.html
 ---
-
-# Benefit Advanced AI and Computing Lab
-
 Benefit Advanced AI and Computing Lab Vision: “To be a center for excellence and a national resource inspiring researchers, students, and entrepreneurs in artificial intelligence and computing.” 
 
 In response to the initiative by H.M. the King for a comprehensive national plan for the needs of the digital economy and employing artificial intelligence technology in service and productive sectors, the University of Bahrain is actively developing academic programs to serve this royal initiative and to support the national economy. These programs are graduating qualified and professional persons that are leading the digital transformation in the public and private sectors in Bahrain. 
