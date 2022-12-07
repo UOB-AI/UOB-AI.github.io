@@ -1,7 +1,6 @@
 ---
 title: "Conda"
 keywords: conda, python, environments
-tags: [conda]
 sidebar: main_sidebar
 permalink: conda.html
 summary: Conda package manager
@@ -19,7 +18,7 @@ conda init
 conda init zsh
 ```
 
-To list all the available environments:
+**To list all the available environments:**
 ```bash
 conda env list
 ```
@@ -40,9 +39,9 @@ tf2-rapids-py39          /data/software/miniconda3/envs/tf2-rapids-py39
 torch                    /data/software/miniconda3/envs/torch
 ```
 
-You can notice that we host our environments on `/data/software/miniconda3/env/`. Which is an network file system (nfs) that is available for the master node and all computing nodes. The `base` environment which is marked with a `*` symbol is the default environment.
+You can notice that we host our environments on `/data/software/miniconda3/env/`. Which is a network file system (nfs) that is available for the master node and all computing nodes. The `base` environment which is marked with a `*` symbol is the default environment.
 
-To activate an environment:
+**To activate an environment:**
 ```bash
 # Using environment name
 conda activate <environment-name>
@@ -54,23 +53,23 @@ conda activate pytorch
 conda activate /data/software/miniconda3/envs/pytorch
 ```
 
-To list the packages available in an environment after you activate it:
+**To list the packages available in an environment after you activate it:**
 ```bash
 conda list
 ```
 
-To deactivate an environment:
+**To deactivate an environment:**
 ```bash
 conda deactivate
 ```
 
-To install extra packages to the environment use:
+**To install extra packages to the environment use:**
 ```bash
 pip install <package-name>
 ```
 Note this will install the package to your user space.
 
-To add the activated environment to JupyterLab as a kernel:
+**To add the activated environment to JupyterLab as a kernel:**
 ```bash
 # Make sure you activate the environment first or this won't work
 # Make sure to change <environment-name> and <display-name> to what you want
@@ -82,4 +81,4 @@ python -m ipykernel install --user --name tf2-rapids-py39 --display-name "TF2 RA
 
 After that you will find the environment in the kernel drop-down menu in JupyterLab.
 
-For more information about conda refer to its [documentation page](https://docs.conda.io/projects/conda/en/stable/user-guide/index.html).
+_For more information about conda refer to its [documentation page](https://docs.conda.io/projects/conda/en/stable/user-guide/index.html)._
