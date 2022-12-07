@@ -17,10 +17,6 @@ Fill the form and start the Lab instance.
 # Login to the master node
 ssh username@10.240.240.11
 
-# Initialise your conda setup
-# This command is required only one time, next time conda will be available for you directly on all nodes.
-conda init
-
 # Run the batch file, refer to the file for more details
 sbatch launch_jupyterlab.sh
 
@@ -33,8 +29,9 @@ cat jupyterlab_config.out
 # Start an SSH tunnel between your PC and the compute node
 # Note that the following one liner will create 2 tunnels
 # PC <-----> Master Node <-----> Compute Node
-ssh -t -L port:localhost:port username@10.240.240.11 ssh -L port:localhost:port hostname
+ssh -t -L <port>:localhost:<port> username@10.240.240.11 ssh -L <port>:localhost:<port> <hostname>
 
+# Make sure that you replace <port> and <hostname> with the correct values from the output file
 # Example
 ssh -t -L 8888:localhost:8888 asubah@10.240.240.11 ssh -L 8888:localhost:8888 hostname
 
@@ -50,11 +47,11 @@ launch_jupyterlab.sh
 #SBATCH --nodes=1
 #SBATCH --time=30:00 # Set the time you want you jupyter lab to be running, if you remove this line it will take the partition default which is infinity.
 #SBATCH --partition=compute # Change the partition to gpu if you want to connect to AMD/A100 machines.
-source ~/.bashrc # Make conda available to slurm
 
 echo 'hostname: ' `hostname` # Print the hostname to the output file
 
 conda activate /data/software/conda/envs/jupyter # Activate the environment
 
 jupyter-lab --no-browser --port 8888 # Run the server on port 8888
+# Note that if port is used Jupyter lab will try another port, refer to the output file to get the selected port
 ```
