@@ -27,3 +27,7 @@ entries:
     - title: MPI
       output: web
       url: /mpi.html
+
+    - title: Conda
+      output: web
+      url: /conda.html
