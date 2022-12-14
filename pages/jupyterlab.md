@@ -15,7 +15,7 @@ Fill the form and start the Lab instance.
 
 ```bash
 # Login to the master node
-ssh username@10.240.240.11
+ssh username@hayrat.uob.edu.bh
 
 # Run the batch file, refer to the file for more details
 sbatch launch_jupyterlab.sh
@@ -29,11 +29,11 @@ cat jupyterlab_config.out
 # Start an SSH tunnel between your PC and the compute node
 # Note that the following one liner will create 2 tunnels
 # PC <-----> Master Node <-----> Compute Node
-ssh -t -L <port>:localhost:<port> username@10.240.240.11 ssh -L <port>:localhost:<port> <hostname>
+ssh -t -L <port>:localhost:<port> username@hayrat.uob.edu.bh ssh -L <port>:localhost:<port> <hostname>
 
 # Make sure that you replace <port> and <hostname> with the correct values from the output file
 # Example
-ssh -t -L 8888:localhost:8888 asubah@10.240.240.11 ssh -L 8888:localhost:8888 hostname
+ssh -t -L 8888:localhost:8888 asubah@hayrat.uob.edu.bh ssh -L 8888:localhost:8888 hostname
 
 # Finally, in your web browser, navigate to the URL you got from jupyterlab_config.out file.
 ```
