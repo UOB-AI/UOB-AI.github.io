@@ -5,9 +5,6 @@ sidebar: main_sidebar
 permalink: login.html
 summary: Instructions on how to log in to the cluster
 ---
-
-{% include warning.html content="Currently the lab is accessible only in UOB network or through VPN, public access will be provided in the future." %}
-
 # SSH
 The cluster can be accessed through SSH protocol:
 
