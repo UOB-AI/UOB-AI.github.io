@@ -1,7 +1,6 @@
 ---
 title: "Slurm"
 keywords: Slurm
-tags: [tag]
 sidebar: main_sidebar
 permalink: slurm.html
 summary: Using the Job Scheduler Slurm
@@ -75,7 +74,7 @@ it:
 
 All of these, along with potentially additional job parameters submission options, can be described in a submission script. The expression #SBATCH is used to specify these parameters in the script.
 
-{% include warning.html content="Important: The #SBATCH directives must appear at the top of the submission file, before any other line except for the very first line which should be the shebang (e.g. #!/bin/bash)." %}
+{% include warning.html content="The #SBATCH directives must appear at the top of the submission file, before any other line except for the very first line which should be the shebang (e.g. #!/bin/bash)." %}
 
 
 As an example, the following should be entered in a file named `submit.sh`:
