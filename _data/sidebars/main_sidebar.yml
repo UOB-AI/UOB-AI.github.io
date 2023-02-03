@@ -20,6 +20,10 @@ entries:
       output: web
       url: /login.html
   
+    - title: Slurm
+      output: web
+      url: /slurm.html
+
     - title: JupyterLab
       output: web
       url: /jupyter.html
