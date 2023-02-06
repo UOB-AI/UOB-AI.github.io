@@ -9,7 +9,20 @@ summary: This is a guide on how to use JupyterLab on the cluster
 # Using Open OnDemand (Recommended)
 
 From the top menu click on `Interactive apps`, and then choose JupyterLab.
-Fill the form and start the Lab instance.
+
+{% include image.html file="jupyter-1.png" url="" alt="Interactive Apps Jupyter" caption="" %}
+
+Fill the form and start the lab instance.
+
+{% include image.html file="jupyter-2.png" url="" alt="JupyterLab Form" caption="" %}
+
+In the partition field you can write the partition name that you want to use. Available partitions can be fetched using the `sinfo` command.
+
+Please specify the maximum time you need the lab to run. If yo you finish early, please delete the session to free the resources.
+
+Click on the `Connect to Jupyter` button to open the Jupyter Lab interface in your browser.
+
+{% include image.html file="jupyter-3.png" url="" alt="Connect" caption="" %}
 
 # Using Tunneling
 
