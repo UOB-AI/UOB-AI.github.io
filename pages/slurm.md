@@ -80,7 +80,7 @@ All of these, along with potentially additional job parameters submission option
 As an example, the following should be entered in a file named `submit.sh`:
 
 ```bash
-#~/bin/bash
+#!/bin/bash
 #
 #SBATCH --job-name=test
 #SBATCH --output=res.txt
