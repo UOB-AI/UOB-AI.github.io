@@ -44,6 +44,6 @@ Click on the `Upload` button:
 
 {% include image.html file="files-2.png" url="" alt="Upload Button" caption="" %}
 
-Select you files:
+Select your files:
 
 {% include image.html file="files-3.png" url="" alt="Upload Panel" caption="" %}
