@@ -18,7 +18,7 @@ Fill the form and start the lab instance.
 
 In the partition field you can write the partition name that you want to use. Available partitions can be fetched using the `sinfo` command.
 
-Please specify the maximum time you need the lab to run. If yo you finish early, please delete the session to free the resources.
+Please specify the maximum time you need the lab to run. If you finish early, please delete the session to free the resources.
 
 Click on the `Connect to Jupyter` button to open the Jupyter Lab interface in your browser.
 
