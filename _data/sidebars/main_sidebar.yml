@@ -24,6 +24,10 @@ entries:
       output: web
       url: /files.html
 
+    - title: Account
+      output: web
+      url: /account.html
+
     - title: Slurm
       output: web
       url: /slurm.html
