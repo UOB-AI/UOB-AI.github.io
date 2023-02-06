@@ -20,6 +20,10 @@ entries:
       output: web
       url: /login.html
   
+    - title: Files
+      output: web
+      url: /files.html
+
     - title: Slurm
       output: web
       url: /slurm.html
