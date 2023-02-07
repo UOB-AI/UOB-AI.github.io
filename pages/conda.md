@@ -77,6 +77,9 @@ Note this will install the package to your user space.
 ## Add as JupyterLab Kernel
 To add the activated environment to JupyterLab as a kernel:
 ```bash
+# Make sure to activate the environment that you want beforehand
+conda activate <environment-name>
+
 # Make sure you have ipykernel installed
 pip install ipykernel
 
@@ -84,6 +87,8 @@ pip install ipykernel
 python -m ipykernel install --user --name <environment-name> --display-name "<display-name>"
 
 # Example
+conda activate tf2-rapids-py39
+pip install ipykernel
 python -m ipykernel install --user --name tf2-rapids-py39 --display-name "TF2 RAPIDS Py39"
 ```
 
