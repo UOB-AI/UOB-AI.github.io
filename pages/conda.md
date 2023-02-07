@@ -71,7 +71,9 @@ Note this will install the package to your user space.
 
 **To add the activated environment to JupyterLab as a kernel:**
 ```bash
-# Make sure you activate the environment first or this won't work
+# Make sure you have ipykernel installed
+pip install ipykernel
+
 # Make sure to change <environment-name> and <display-name> to what you want
 python -m ipykernel install --user --name <environment-name> --display-name "<display-name>"
 
