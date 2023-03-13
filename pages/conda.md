@@ -18,7 +18,8 @@ conda init
 conda init zsh
 ```
 
-**To list all the available environments:**
+## List Environments
+To list all the available environments:
 ```bash
 conda env list
 ```
@@ -41,7 +42,8 @@ torch                    /data/software/miniconda3/envs/torch
 
 You can notice that we host our environments on `/data/software/miniconda3/env/`. Which is a network file system (nfs) that is available for the master node and all computing nodes. The `base` environment which is marked with a `*` symbol is the default environment.
 
-**To activate an environment:**
+## Activate Environment
+To activate an environment:
 ```bash
 # Using environment name
 conda activate <environment-name>
@@ -53,23 +55,27 @@ conda activate pytorch
 conda activate /data/software/miniconda3/envs/pytorch
 ```
 
-**To list the packages available in an environment after you activate it:**
+## List Packages
+To list the packages available in an environment after you activate it:
 ```bash
 conda list
 ```
 
-**To deactivate an environment:**
+## Deactivate Environment
+To deactivate an environment:
 ```bash
 conda deactivate
 ```
 
-**To install extra packages to the environment use:**
+## Install Extra Packages
+To install extra packages to the environment use:
 ```bash
 pip install <package-name>
 ```
 Note this will install the package to your user space.
 
-**To add the activated environment to JupyterLab as a kernel:**
+## Add as JupyterLab Kernel
+To add the activated environment to JupyterLab as a kernel:
 ```bash
 # Make sure you have ipykernel installed
 pip install ipykernel
