@@ -7,7 +7,7 @@ summary: How to upload or download files to the cluster
 published: true
 ---
 
-# Using Rsync
+## Using Rsync
 > Rsync is a fast and extraordinarily versatile file copying tool. It can copy locally, to/from another host over any remote shell, or to/from a remote rsync daemon.
 
 ```bash
@@ -34,7 +34,7 @@ You can read more in the `rsync` manual by running:
 man rsync
 ```
 
-# Using OpenOnDemand
+## Using OpenOnDemand
 
 After you login navigate to the file explorer:
 

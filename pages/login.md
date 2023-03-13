@@ -5,7 +5,7 @@ sidebar: main_sidebar
 permalink: login.html
 summary: Instructions on how to log in to the cluster
 ---
-# SSH
+## SSH
 The cluster can be accessed through SSH protocol:
 
 ```bash
@@ -13,7 +13,7 @@ ssh username@hayrat.uob.edu.bh
 ```
 Replace `username` with the one provided to you after registration.
 
-# Open OnDemand
+## Open OnDemand
 
 We also provide an [Open OnDmand](https://openondemand.org/) instance to access the cluster through the browser.
 

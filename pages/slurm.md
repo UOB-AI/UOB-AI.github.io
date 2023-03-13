@@ -7,7 +7,7 @@ summary: Using the Job Scheduler Slurm
 published: True
 ---
 
-# Slurm Workload Manager Basics
+## Slurm Workload Manager Basics
 
 The Benefit AI Lab Cluster uses slurm as a scheduler and workload manager. As a warning, note that on a cluster, you do not run the computations on the login node. Computations belong on
 the compute nodes, when, and where they will be run is decided by the scheduler (like slurm). In the Benefit AI Lab cluster, this is the master node: `hayrat`.
@@ -23,7 +23,7 @@ You can request these resources nicely through slurm using the shell script and 
 
 The system administrator also divides the cluster into partitions, and each user group will have some of these partitions available to them based on their privileges. A partition is a set of compute nodes (computers dedicated to... computing) grouped logically based on either physical properties of the hardware or job scheduling policies. Once the submitted job is executed, the output of the jobs is then written into disk (or storage).
 
-# Gathering Cluster Information
+## Gathering Cluster Information
 
 Slurm offers the `sinfo` command to get an overview of the resources offered by the cluster. By default, `sinfo` lists the partitions that are available on the cluster.
 
@@ -58,7 +58,7 @@ gpu02          1       gpu   allocated 192    2:48:2 103162        0      1 gpu,
 
 The other columns report the volatile working memory (RAM – MEMORY), the size of the local temporary disk (also called local scratch space – TMP_DISK), and the node “weight” (an internal parameter specifying preferences in nodes for allocations when there are multiple possibilities).
 
-# Running Jobs on Slurm
+## Running Jobs on Slurm
 
 Jobs are made of one or multiple sequential steps, each consisting in one or multiple parallel tasks that will be dispatched to possibly distinct nodes. Each task will be allocated CPUs, memory, and possible other generic resources in an exclusive manner by slurm.
 

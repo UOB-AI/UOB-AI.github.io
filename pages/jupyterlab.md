@@ -6,7 +6,7 @@ permalink: jupyter.html
 summary: This is a guide on how to use JupyterLab on the cluster
 ---
 
-# Using Open OnDemand (Recommended)
+## Using Open OnDemand (Recommended)
 
 From the top menu click on `Interactive apps`, and then choose JupyterLab.
 
@@ -24,7 +24,7 @@ Click on the `Connect to Jupyter` button to open the Jupyter Lab interface in yo
 
 {% include image.html file="jupyter-3.png" url="" alt="Connect" caption="" %}
 
-# Using Tunneling
+## Using Tunneling
 
 ```bash
 # Login to the master node
