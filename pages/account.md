@@ -36,5 +36,7 @@ du -hd1 .
 ```
 
 To further debug your storage problem, refer to the following issue: [#14](https://github.com/UOB-AI/UOB-AI.github.io/issues/14)
+
 If you need more storage, you can use the shared datasets directory `/data/datasets/`.
+
 If you need more private storage, contact us on [ailab@uob.edu.bh](mailto:ailab@uob.edu.bh).
