@@ -24,7 +24,7 @@ entries:
       output: web
       url: /files.html
 
-    - title: Account
+    - title: Account & Storage
       output: web
       url: /account.html
 
