@@ -6,4 +6,4 @@ permalink: access.html
 summary: How to apply for an account
 ---
 
-To request access to the cluster please send an email to: [ailab@uob.edu.bh](mailto:ailab@uob.edu.bh).
+To request access to the cluster please visit our main page: [https://ailab.uob.edu.bh](https://ailab.uob.edu.bh)
