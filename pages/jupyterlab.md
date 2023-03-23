@@ -7,7 +7,7 @@ summary: This is a guide on how to use JupyterLab on the cluster
 ---
 
 ## Using Open OnDemand (Recommended)
-Navigate to our OnDemand page: [hayrat.uob.edu.bh](hayrat.uob.edu.bh)
+Navigate to our OnDemand page: [hayrat.uob.edu.bh](https://hayrat.uob.edu.bh)
 
 From the top menu click on `Interactive apps`, and then choose JupyterLab.
 
