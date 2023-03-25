@@ -75,6 +75,9 @@ pip install <package-name>
 Note this will install the package to your user space.
 
 ## Add as JupyterLab Kernel
+
+{% include info.html content="Nowadays, normally if we create an environment for you, it will be automatically available as a `ipykernel`. Therefore, you don't have to do the steps below unles you created your own conda environment." %}
+
 To add the activated environment to JupyterLab as a kernel:
 ```bash
 # Make sure to activate the environment that you want beforehand
