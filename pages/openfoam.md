@@ -1,4 +1,4 @@
-This is a brief "quick-start" to use openfoam on the cluster:
+This is a brief tutorial on how to use openfoam on the cluster to run CFD simulations:
 
 First, you have to setup your case, define the problem, create the mesh, define the boundary conditions, initial conditions, setup the solvers and solution schemes and the control dictionary. 
 
