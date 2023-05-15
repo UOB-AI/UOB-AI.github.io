@@ -44,6 +44,10 @@ entries:
       output: web
       url: /conda.html
 
-    - title: Accelerated Data Science
+    - title: accelerated data science
       output: web
       url: /rapids.html
+
+    - title: OpenFoam
+      output: web
+      url: /openfoam.html
