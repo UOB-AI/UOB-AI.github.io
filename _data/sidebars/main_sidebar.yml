@@ -44,7 +44,7 @@ entries:
       output: web
       url: /conda.html
 
-    - title: accelerated data science
+    - title: Accelerated Data Science
       output: web
       url: /rapids.html
 
