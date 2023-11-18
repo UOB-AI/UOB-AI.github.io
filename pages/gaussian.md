@@ -4,7 +4,7 @@ keywords: gaussian
 sidebar: main_sidebar
 permalink: gaussian.html
 summary: Using the computational chemistry software package Gaussian 16
-published: false
+published: true
 ---
 
 {% include warning.html content="Gaussian 16 currently works only on the Intel compute nodes cn0[1-8]. On the AMD nodes it will crash." %}
