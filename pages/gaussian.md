@@ -13,24 +13,36 @@ published: false
 
 ### Join the users group
 
-Gaussian is a propriatry computational chemistry software package. Therefore, to ue the package on the cluster you need to be part of the `gaussian` users group. To get into the group you can contact the Chemistry Department in the College of Science.
+Gaussian is a proprietary computational chemistry software package. Therefore, to use the package on the cluster you need to be part of the `gaussian` users group. To get into the group you can contact the Chemistry Department in the College of Science.
 
-### Edit your .bashrc file
+### Slurm Example
 
-To make things easier for you. You can add the following environment variables in the `.bashrc` file in your home directory. If the file doesn't exist create it.
-You can edit the file using any cli text editor of your choice such as `nano` or `vim`. Or you can edit it through the file explorer in the Open OnDemand portal.
+Slurm is our cluster management and job scheduling system. You can read more about it [here](slurm.html) and [here](https://slurm.schedmd.com/overview.html).
 
-TODO add a notice here about dor files
+This is an example Slurm batch script that you can start with and modify as you see fit.
 
-```bsah
-nano ~/.bashrc
-```
+```bash
+#!/bin/bash
+#
+#SBATCH --job-name=g16
+#SBATCH --output=g16.%j.out
+#SBATCH --partition=compute
+#
+#SBATCH --time=10:00:00
 
-Then add the following lines to the end of the file and save it.
-
-```bsah
-export g16root="/home/nfs/asubah/gaussian/"
-export GAUSS_SCRDIR="/home/nfs/asubah/gaussian/scr"
+# Setting up the environment
+export g16root="/data/software/packages/Gaussian-16.B.01"
+export GAUSS_SCRDIR="/data/datasets/$UID/g16scr/$SLURM_JOB_ID"
 source $g16root/g16/bsd/g16.profile
+
+mkdir -p $GAUSS_SCRDIR
+
+# Running the program
+g16 input.gjf
 ```
 
+Write the above script in a file and name it `g16.sbatch` for example.
+Submit the job using `sbatch`:
+```bash
+sbatch g16.sbatch
+```
