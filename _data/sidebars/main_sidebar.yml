@@ -51,3 +51,7 @@ entries:
     - title: OpenFoam
       output: web
       url: /openfoam.html
+
+    - title: Gaussian
+      output: web
+      url: /gaussian.html
