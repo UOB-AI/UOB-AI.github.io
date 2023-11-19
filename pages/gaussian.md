@@ -32,7 +32,7 @@ This is an example Slurm batch script that you can start with and modify as you 
 
 # Setting up the environment
 export g16root="/data/software/packages/Gaussian-16.B.01"
-export GAUSS_SCRDIR="/data/datasets/$UID/g16scr/$SLURM_JOB_ID"
+export GAUSS_SCRDIR="/data/datasets/$USER/g16scr/$SLURM_JOB_ID"
 source $g16root/g16/bsd/g16.profile
 
 mkdir -p $GAUSS_SCRDIR
