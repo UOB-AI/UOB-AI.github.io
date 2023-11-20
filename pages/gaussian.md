@@ -48,13 +48,14 @@ sbatch g16.sbatch
 ```
 
 ### Processing Multiple Files on Multiple Compute Nodes
-Instead of submitting multiple `sbatch` jobs to process multiple file. This is single `sbatch` script that can launch multiple instances of `g16` on different nodes.
+Instead of submitting multiple `sbatch` jobs to process multiple files. This is a single `sbatch` script that can launch multiple instances of `g16` on different nodes.
+
 First create the batch script:
 ```bash
 #!/bin/bash
 #
 #SBATCH --job-name=g16
-#SBATCH --output=g16.out
+#SBATCH --output=g16.%j.out
 #SBATCH --partition=compute
 #SBATCH --nodes=4
 #SBATCH --time=10:00:00
