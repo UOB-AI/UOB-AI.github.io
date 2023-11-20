@@ -46,3 +46,55 @@ Submit the job using `sbatch`:
 ```bash
 sbatch g16.sbatch
 ```
+
+### Processing Multiple Files on Multiple Compute Nodes
+Instead of submitting multiple `sbatch` jobs to process multiple file. This is single `sbatch` script that can launch multiple instances of `g16` on different nodes.
+First create the batch script:
+```bash
+#!/bin/bash
+#
+#SBATCH --job-name=g16
+#SBATCH --output=g16.out
+#SBATCH --partition=compute
+#SBATCH --nodes=4
+#SBATCH --time=10:00:00
+
+# Setting up the environment
+export g16root="/data/software/packages/Gaussian-16.B.01"
+source $g16root/g16/bsd/g16.profile
+
+# Running the instances using a launger scrpit
+srun ./launch_g16.sh
+```
+
+Then we need a launcher script, we will call it `launch_g16.sh` in this example:
+```bash
+#!/bin/sh
+
+export GAUSS_SCRDIR="/data/datasets/${USER}/g16scr/${SLURM_JOB_ID}/job_${SLURM_NODEID}"
+mkdir -p ${GAUSS_SCRDIR}
+
+filename=job_${SLURM_NODEID}.gjf
+
+echo "`hostname` is going to process ${filename}"
+g16 ${filename}
+```
+
+Make the file executable by using `chmod`:
+```bash
+chmod u+x launch_g16.sh
+```
+
+Rename you `.gjf` files that you want to process in parallel following this example:
+```
+job_0.gjf
+job_1.gjf
+job_2.gjf
+job_3.gjf
+```
+You can change this naming scheme as you want but make sure to reflect the change in the `launch_g16.sh` script too.
+
+Finally, submit the batch job using `sbatch`:
+```bash
+sbatch multi_g16.sbatch
+```
