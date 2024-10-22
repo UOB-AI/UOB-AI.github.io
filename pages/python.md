@@ -56,7 +56,7 @@ This tutorial guides you through creating a specialized TensorFlow environment o
 
 7. Installing NVIDIA cuDNN:
    ```
-   pip install nvidia-cudnn-cu11==8.9.6.50
+   pip install nvidia-cudnn-cu12==8.9.7.29
    ```
    - Installs NVIDIA's CUDA Deep Neural Network library (cuDNN)
    - This optimizes performance for deep learning on NVIDIA GPUs
