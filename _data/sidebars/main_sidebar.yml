@@ -32,6 +32,10 @@ entries:
       output: web
       url: /slurm.html
 
+    - title: Python
+      output: web
+      url: /python.html
+
     - title: JupyterLab
       output: web
       url: /jupyter.html
