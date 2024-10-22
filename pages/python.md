@@ -1,7 +1,6 @@
 ---
 title: "Setting Up a Custom TensorFlow Environment with GPU Support"
 keywords: python venv
-tags: [python]
 sidebar: main_sidebar
 permalink: python.html
 summary: SUMMARY
