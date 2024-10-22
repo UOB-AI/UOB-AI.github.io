@@ -3,7 +3,7 @@ title: "Setting Up a Custom TensorFlow Environment with GPU Support"
 keywords: python venv
 sidebar: main_sidebar
 permalink: python.html
-summary: SUMMARY
+summary: This tutorial guides you through creating a specialized TensorFlow environment optimized for GPU-accelerated machine learning. You'll learn how to set up a dedicated workspace, create and activate a Python virtual environment, install TensorFlow with CUDA support, and configure it for use in Jupyter notebooks. By following these steps, you'll have an isolated TensorFlow setup ready for deep learning projects, complete with GPU acceleration capabilities and integration with Jupyter.
 published: true
 ---
 
