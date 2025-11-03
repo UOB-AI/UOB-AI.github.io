@@ -184,3 +184,46 @@ deactivate
 Your prompt will return to the base Conda environment (e.g., `(py3.11)`). You can then run `conda deactivate` again if you wish to return to the cluster's default shell.
 
 ---
+
+## Making Your Venv a Jupyter Kernel
+
+After activating your venv and installing your packages, you can make this environment available as a selectable "kernel" in JupyterLab.
+
+### 1. Install the IPyKernel Package
+
+While your venv is **active**, install the `ipykernel` package:
+
+```bash
+# Make sure your prompt starts with (venv)
+pip install ipykernel
+```
+
+### 2. Register the Kernel with Jupyter
+
+Now, run the following command to register this venv. Give it a descriptive name.
+
+```bash
+# --name: This is the internal ID. Keep it simple.
+# --display-name: This is what you will see in the Jupyter menu.
+python -m ipykernel install --user --name="my-project-venv" --display-name="Python (My Project)"
+```
+
+* `--user`: Installs the kernel for your user only, not system-wide. This is critical.
+* `--display-name="Python (My Project)"`: Change this to something descriptive, like "Python (TF 2.17)" or "Python (Data-Analysis-Project)".
+
+Now, when you start JupyterLab, you will see "Python (My Project)" as an option in the Launcher and in the "Kernel" > "Change Kernel" menu.
+
+### 3. Installing Packages from Inside Jupyter
+
+If you are running a notebook using your new kernel and realize you're missing a package, you **must use the `%pip` magic command** to install it correctly.
+
+```python
+# In a Jupyter notebook cell:
+
+# CORRECT: This installs the package into the active kernel (your venv)
+%pip install new-package-name
+
+# WRONG: Do NOT use '!' for pip install
+!pip install new-package-name
+```
+Using `!pip` runs the command in the *shell* and may install the package in the base Conda environment, *not* your active venv, so it won't be found by your kernel. The `%pip` magic command ensures the package is installed in the correct environment.
