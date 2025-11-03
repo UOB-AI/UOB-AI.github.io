@@ -214,7 +214,7 @@ python -m ipykernel install --user --name="my-project-venv" --display-name="Pyth
 Now, when you start JupyterLab, you will see "Python (My Project)" as an option in the Launcher and in the "Kernel" > "Change Kernel" menu.
 
 ### 3. Installing Packages from Inside Jupyter
-
+{% include warning.html content="Using `!pip` runs the command in the *shell* and may install the package in the base Conda environment, *not* your active venv, so it won't be found by your kernel. The `%pip` magic command ensures the package is installed in the correct environment." %}
 If you are running a notebook using your new kernel and realize you're missing a package, you **must use the `%pip` magic command** to install it correctly.
 
 ```python
@@ -226,4 +226,3 @@ If you are running a notebook using your new kernel and realize you're missing a
 # WRONG: Do NOT use '!' for pip install
 !pip install new-package-name
 ```
-Using `!pip` runs the command in the *shell* and may install the package in the base Conda environment, *not* your active venv, so it won't be found by your kernel. The `%pip` magic command ensures the package is installed in the correct environment.
