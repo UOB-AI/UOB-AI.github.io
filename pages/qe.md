@@ -57,7 +57,7 @@ source /data/software/packages/spack/setup-env.sh
 spack load nvhpc@24.1
 ```
 
-**Step 3 (Optional): Load Quantum ESPRESSO**
+**Step 3: Load Quantum ESPRESSO**
 
 ```bash
 spack load quantum-espresso /3qnajq7
@@ -75,7 +75,7 @@ Replace `inputfile` with your actual input file.
 
 ---
 
-## Part 3: Batch Processing with sbatch
+## Part 3 (Optional): Batch Processing with sbatch
 
 For longer or multiple jobs, use `sbatch` instead of interactive mode. This submits jobs to the queue without requiring you to stay connected.
 ### CD to your workspace
