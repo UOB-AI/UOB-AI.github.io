@@ -59,3 +59,7 @@ entries:
     - title: Gaussian
       output: web
       url: /gaussian.html
+
+    - title: Quantum ESPRESSO
+      output: web
+      url: /qe.html
