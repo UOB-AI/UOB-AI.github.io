@@ -78,7 +78,7 @@ Replace `inputfile` with your actual input file.
 ## Part 3 (Optional): Batch Processing with sbatch
 
 For longer or multiple jobs, use `sbatch` instead of interactive mode. This submits jobs to the queue without requiring you to stay connected.
-### CD to your workspace
+### Move to your workspace
 
 Create it if it doesn't exist:
 
