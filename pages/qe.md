@@ -7,49 +7,7 @@ summary: Using the computational chemistry software package Quantum ESPRESSO
 published: true
 ---
 
-# using srun
-
-You need to create a directory on our beegfs storage where you have more capacity.
-The home directory is limited to 5GB.
-```bash
-mkdir /data/datasets/$USER
-cd /data/datasets/$USER
-```
-
-alocate compute resources using SLURM
-This will give you an interactive shell on one of the compute nodes (Intel CPUs + T4 GPUs)
-A better way to do it is by using sbatch see below.
-```bash
-srun -t 12:00:00 -p standard --pty /bin/bash
-```
-
-
-load the correct spack installation for the current compute node.
-```bash
-source /data/software/packages/spack/setup-env.sh
-```
-
-load nvhpc
-
-```bash
-spack load nvhpc@24.1
-```
-
-load quantum-espresso
-```
-spack load quantum-espresso /3qnajq7
-```
-
-now you can run quantum-espresso binaries such as pw.x with mpirun
-
-```bash
-mpirun pw.x < inputfile
-```
-
-# using sbatch
-
-put an sbatch file sample and instructions on how to use it.
-# Tutorial: Running Quantum ESPRESSO on HPC Cluster
+# Running Quantum ESPRESSO on the cluster
 
 ## Part 1: Setting Up Your Workspace
 
@@ -99,7 +57,7 @@ source /data/software/packages/spack/setup-env.sh
 spack load nvhpc@24.1
 ```
 
-**Step 3: Load Quantum ESPRESSO**
+**Step 3 (Optional): Load Quantum ESPRESSO**
 
 ```bash
 spack load quantum-espresso /3qnajq7
