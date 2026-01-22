@@ -136,7 +136,7 @@ This removes the depth limit and sorts by size. Example output:
 <details>
 <summary>Click to expand example output</summary>
 
-```
+<pre>
 ...
 117M	/home/nfs/username/.local/lib/python3.9/site-packages/triton/_C
 137M	/home/nfs/username/.local/lib/python3.9/site-packages/triton
@@ -165,7 +165,7 @@ This removes the depth limit and sorts by size. Example output:
 3.8G	/home/nfs/username/.local/lib/python3.9
 3.8G	/home/nfs/username/.local/lib/python3.9/site-packages
 4.6G	/home/nfs/username/.local
-```
+</pre>
 
 </details>
 
