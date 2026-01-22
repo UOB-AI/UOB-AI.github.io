@@ -3,61 +3,111 @@ title: "Account & Storage Management"
 keywords: keyword
 sidebar: main_sidebar
 permalink: account.html
-summary: Commands to manage your account
+summary: Commands to manage your account, check storage quotas, and troubleshoot common storage issues
 published: true
 ---
 
-## Change your password
+{% include warning.html content="**Critical Storage Limitation:** Your home directory (`~/` or `/home/$USER`) on the cluster is limited to **5GB**. A single virtual environment with modern data science packages (like PyTorch or TensorFlow) can easily exceed this limit. You **must** create all project directories and virtual environments under `/data/datasets/$USER`, which has a much larger storage quota." %}
 
-Use the passwd command to change your password. It will ask you for the current password and the new password.
+## Change Your Password
+
+Use the `passwd` command to change your password. It will prompt you for your current password followed by the new password.
+
 ```bash
 passwd
 ```
 
-## Storage quota
-You can check you storage quota by using:
+## Storage Quota
+
+### Check Your Home Directory Quota
+
+You can check your storage quota using:
 
 ```bash
 df -kh ~
 ```
 
-Sample output
+Sample output:
 ```bash
 Filesystem                               Size  Used Avail Use% Mounted on
 ............:/ifs/data/adhari/zone1/nfs  5.0G     0  5.0G   0% /home/nfs
 ```
 
-### File Sizes
+### Check File and Directory Sizes
+
 To check the file and directory sizes in the current directory:
 
 ```bash
-# Don't forget the dot in the end of the command
+# Don't forget the dot at the end of the command
 du -hd1 .
 ```
 
-To further debug your storage problem, refer to the following issue: [#14](https://github.com/UOB-AI/UOB-AI.github.io/issues/14)
+To see the largest directories sorted by size:
 
-If you need more storage, you can use the shared datasets directory `/data/datasets/`.
+```bash
+du -h ~ | sort -h | tail -20
+```
 
-If you need more private storage, contact us on [ailab@uob.edu.bh](mailto:ailab@uob.edu.bh).
+To find the largest files in your home directory:
 
-## How to fix "No Space Left" Errors
-As mentioned above, to check your storage quota you can use the following command:
+```bash
+find ~ -type f -exec du -h {} + 2>/dev/null | sort -h | tail -20
+```
+
+### Additional Storage Commands
+
+| Command | Description |
+|---------|-------------|
+| `df -kh ~` | Check home directory quota |
+| `df -kh /data/datasets` | Check datasets directory quota |
+| `du -hd1 .` | Show sizes of items in current directory |
+| `du -sh ~/` | Show total size of home directory |
+| `du -h ~ \| sort -h` | List all directories sorted by size |
+| `find ~ -size +100M` | Find files larger than 100MB |
+
+For additional debugging of storage problems, refer to: [Issue #14](https://github.com/UOB-AI/UOB-AI.github.io/issues/14)
+
+## Storage Options
+
+### Home Directory (`~/`)
+- **Quota:** 5GB
+- **Use for:** Configuration files, small scripts, SSH keys
+- **Avoid:** Large datasets, virtual environments, model checkpoints
+
+### Datasets Directory (`/data/datasets/$USER`)
+- **Quota:** Much larger (contact admin for specific limits)
+- **Use for:** Projects, virtual environments, datasets, model weights, checkpoints
+- **Access:** Create your own subdirectory
+
+If you need additional private storage beyond these options, contact us at [ailab@uob.edu.bh](mailto:ailab@uob.edu.bh).
+
+## How to Fix "No Space Left on Device" Errors
+
+If you encounter "No space left on device" errors, your home directory is likely full. Follow the steps below to diagnose and resolve the issue.
+
+### Step 1: Check Your Current Usage
+
+First, verify that your home directory is full:
+
 ```bash
 df -kh ~
 ```
-Running this on your home directory, I got the following output:
+
+Example output showing a full home directory:
 ```
 Filesystem                               Size  Used Avail Use% Mounted on
 10.240.240.3:/ifs/data/adhari/zone1/nfs  5.0G  5.0G     0 100% /home/nfs
 ```
-Which shows that you used all your available storage for your home directory, which is 5 GB.
 
-The first thing you need to do if you filled your home directory is to run the following command to check what is the root of the problem:
+### Step 2: Identify Large Directories
+
+Run the following command to see what's consuming space:
+
 ```bash
 du -hd1 ~
 ```
-Running this on your home directory will give you the following:
+
+Example output:
 ```
 32K	/home/nfs/username/.ipynb_checkpoints
 64K	/home/nfs/username/.config
@@ -72,14 +122,20 @@ Running this on your home directory will give you the following:
 50M	/home/nfs/username/.conda
 5.0G	/home/nfs/username/
 ```
-This shows that the size of your `.local` folder is almost 5 GB. This folder usually contains the packages you installed.
 
-To inspect the `.local` directory in details, we can run:
+### Step 3: Investigate the Largest Directories
+
+To drill down into a specific directory (e.g., `.local`):
+
 ```bash
 du -h ~/.local | sort -h
 ```
-Notice that the `d1` from the `du` command is removed, which limit the output to one level of directory depth. Now the command will print the sizes of the directories under `.local` and all the subdirectories. And then we pipe the output of the `du` command using `|` to the `sort` command, which will sort the directories in ascending order.
-And this is part of the output from your account:
+
+This removes the depth limit and sorts by size. Example output:
+
+<details>
+<summary>Click to expand example output</summary>
+
 ```
 ...
 117M	/home/nfs/username/.local/lib/python3.9/site-packages/triton/_C
@@ -111,55 +167,196 @@ And this is part of the output from your account:
 4.6G	/home/nfs/username/.local
 ```
 
-You can see that almost all the large directories are python packages, specifically nvidia packages.
-These packages you should uninstall because they are already available in the Conda environments.
-If you run the following command, you will get all the packages installed in your `.local` directory:
+</details>
+
+### Step 4: Common Culprits and Solutions
+
+#### 4.1 Remove Redundant Python Packages
+
+Python packages installed with `pip install --user` go to `~/.local` and can consume gigabytes of space. Many of these packages (especially NVIDIA libraries) are already available in the cluster's Conda environments.
+
+List user-installed packages:
+
 ```bash
 conda activate
 pip list --user
 ```
-This is part of the output:
-```
-nvidia-cublas-cu11       11.10.3.66
-nvidia-cuda-cupti-cu11   11.7.101
-nvidia-cuda-nvrtc-cu11   11.7.99
-nvidia-cuda-runtime-cu11 11.7.99
-nvidia-cudnn-cu11        8.5.0.96
-nvidia-cufft-cu11        10.9.0.58
-nvidia-curand-cu11       10.2.10.91
-nvidia-cusolver-cu11     11.4.0.1
-nvidia-cusparse-cu11     11.7.4.91
-nvidia-nccl-cu11         2.14.3
-nvidia-nvtx-cu11         11.7.91
-```
-All the packages that start with `nvidia-` are not needed. Or large packages that already exist in the Conda environments, such as Pytorch or Tensorflow. You can uninstall them by running:
+
+Common packages to uninstall (already available in Conda environments):
+
 ```bash
-pip uninstall nvidia-cublas-cu11 nvidia-cudnn-cu11 ...
+pip uninstall nvidia-cublas-cu11 nvidia-cuda-cupti-cu11 nvidia-cuda-nvrtc-cu11 \
+    nvidia-cuda-runtime-cu11 nvidia-cudnn-cu11 nvidia-cufft-cu11 \
+    nvidia-curand-cu11 nvidia-cusolver-cu11 nvidia-cusparse-cu11 \
+    nvidia-nccl-cu11 nvidia-nvtx-cu11
 ```
 
-This will solve most of your problem.
-Now, if we go back to the output of the last `du` command, we can find another problematic directory which is:
-```
-/home/nfs/username/.local/share/Trash/files
-```
-This directory contains the files you delete using the JupyterLab delete button.
-![Screenshot from 2023-07-06 14-03-36](https://github.com/UOB-AI/UOB-AI.github.io/assets/7252022/edaa5cc2-d29f-4d09-973b-9ad3938f69cb)
+To remove **all** user-installed packages (use with caution):
 
-To empty the trash you can run:
 ```bash
-rm -rf /home/nfs/username/.local/share/Trash/files
+pip freeze --user | xargs pip uninstall -y
 ```
-The final thing is the `/data/datasets` directory.
-Because the home directory space is limited, we offer a larger directory for you to store your data and models.
-To use this directory, you can either `cd` to it in the terminal, and create a directory for your project.
+
+#### 4.2 Empty the Trash
+
+Files deleted through JupyterLab's interface are moved to trash, not permanently deleted:
+
+![JupyterLab delete button](https://github.com/UOB-AI/UOB-AI.github.io/assets/7252022/edaa5cc2-d29f-4d09-973b-9ad3938f69cb)
+
+To permanently delete trashed files:
+
 ```bash
-cd /data/datasets
-mkdir myproject
+rm -rf ~/.local/share/Trash/*
 ```
-And then point your code to use that directory to download and store your files.
-Or you can create a symbolic link (shortcut) from your project directory to your home directory to make it easier for you:
+
+#### 4.3 Clear Cache Directories
+
+Various applications store cache files that can accumulate over time:
+
 ```bash
-mkdir /data/datasets/myproject
-ln -s /data/datasets/myproject ~
+# Clear pip cache
+pip cache purge
+
+# Clear conda cache (if using conda in home directory)
+conda clean --all
+
+# Clear general cache
+rm -rf ~/.cache/*
+
+# Clear Jupyter checkpoints
+find ~ -name ".ipynb_checkpoints" -type d -exec rm -rf {} + 2>/dev/null
 ```
-This should solve all your problems.
+
+#### 4.4 Remove Old Virtual Environments
+
+If you have virtual environments in your home directory:
+
+```bash
+# List potential virtual environment directories
+ls -la ~/venv* ~/env* ~/.virtualenvs 2>/dev/null
+
+# Remove a virtual environment
+rm -rf ~/venv_name
+```
+
+#### 4.5 Move Large Files to `/data/datasets`
+
+Move existing large files to the datasets directory:
+
+```bash
+# Create your personal directory
+mkdir -p /data/datasets/$USER
+
+# Move a large directory
+mv ~/large_project /data/datasets/$USER/
+
+# Create a symbolic link for easy access
+ln -s /data/datasets/$USER/large_project ~/large_project
+```
+
+### Summary of Quick Fixes
+
+| Problem | Solution |
+|---------|----------|
+| Large `~/.local` directory | Uninstall user-installed pip packages |
+| Trash taking up space | `rm -rf ~/.local/share/Trash/*` |
+| Cache files | `pip cache purge` and `rm -rf ~/.cache/*` |
+| Virtual environments in `~` | Move to `/data/datasets/$USER` |
+| Large datasets/models | Move to `/data/datasets/$USER` |
+| Jupyter checkpoints | `find ~ -name ".ipynb_checkpoints" -exec rm -rf {} +` |
+
+## Best Practices: Using `/data/datasets`
+
+To avoid storage issues, **always** set up your projects in `/data/datasets/$USER` from the start.
+
+### Initial Setup
+
+```bash
+# Create your personal directory (one-time setup)
+mkdir -p /data/datasets/$USER
+
+# Navigate to your directory
+cd /data/datasets/$USER
+```
+
+### Create a New Project
+
+```bash
+# Create project directory
+mkdir -p /data/datasets/$USER/myproject
+cd /data/datasets/$USER/myproject
+
+# Create a virtual environment here (not in home directory!)
+python -m venv venv
+source venv/bin/activate
+```
+
+### Create Symbolic Links for Convenience
+
+If you prefer accessing your projects from your home directory:
+
+```bash
+# Create a link to your project
+ln -s /data/datasets/$USER/myproject ~/myproject
+
+# Create a link to the entire datasets directory
+ln -s /data/datasets/$USER ~/datasets
+```
+
+Now you can access `/data/datasets/$USER/myproject` simply by typing `cd ~/myproject`.
+
+### Configure Common Tools
+
+#### Pip
+
+Set pip to install packages to a directory outside your home:
+
+```bash
+# Add to your ~/.bashrc
+export PIP_TARGET=/data/datasets/$USER/.pip-packages
+export PYTHONPATH=/data/datasets/$USER/.pip-packages:$PYTHONPATH
+```
+
+#### Conda (if creating personal environments)
+
+```bash
+# Create conda environment in datasets directory
+conda create --prefix /data/datasets/$USER/conda-envs/myenv python=3.9
+conda activate /data/datasets/$USER/conda-envs/myenv
+```
+
+#### Hugging Face / Transformers
+
+```bash
+# Add to your ~/.bashrc
+export HF_HOME=/data/datasets/$USER/.cache/huggingface
+export TRANSFORMERS_CACHE=/data/datasets/$USER/.cache/huggingface/transformers
+```
+
+#### PyTorch
+
+```bash
+# Add to your ~/.bashrc
+export TORCH_HOME=/data/datasets/$USER/.cache/torch
+```
+
+### Example `.bashrc` Additions
+
+Add these lines to your `~/.bashrc` to automatically redirect cache and data directories:
+
+```bash
+# Redirect common cache directories to datasets
+export HF_HOME=/data/datasets/$USER/.cache/huggingface
+export TRANSFORMERS_CACHE=/data/datasets/$USER/.cache/huggingface/transformers
+export TORCH_HOME=/data/datasets/$USER/.cache/torch
+export XDG_CACHE_HOME=/data/datasets/$USER/.cache
+
+# Create directories if they don't exist
+mkdir -p $HF_HOME $TRANSFORMERS_CACHE $TORCH_HOME $XDG_CACHE_HOME 2>/dev/null
+```
+
+After editing, reload your configuration:
+
+```bash
+source ~/.bashrc
+```
